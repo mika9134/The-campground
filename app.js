@@ -12,13 +12,12 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp'
 // }
 );
 
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-    console.log("Database connected");
+        console.log("Database connected");  
 });
-
-const app = express();
 
 
 app.set('view engine', 'ejs');
@@ -30,6 +29,7 @@ app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
     res.render('home')
+
 });
 app.get('/campgrounds', async (req, res) => {
     const campgrounds = await Campground.find({});
@@ -68,7 +68,6 @@ app.delete('/campgrounds/:id', async (req, res) => {
 })
 
 
-
-app.listen(3000, () => {
-    console.log('Serving on port 3000')
-})
+app.listen(3000, ()=>{
+    console.log('serving on port 3000')
+}) 
